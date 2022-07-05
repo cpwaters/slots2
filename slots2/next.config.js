@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
+  serverRuntimeConfig: {
+      secret: 'THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING'
+  },
+  publicRuntimeConfig: {
+      apiUrl: process.env.NODE_ENV === 'development'
+          ? 'http://localhost:3005/api' // development api
+          : 'http://localhost:3005/api' // production api
+  }
 }
 
 module.exports = nextConfig
